@@ -7,7 +7,7 @@ import pandas as pd
 st.image("./images/logo.jpg", width=30)
 
 # Streamlit App UI and Logic
-st.title("Energize AI - Your personal energy assistant")
+st.title("Energize AI - Your energy assistant")
 
 st.header("Ask me anything about energy!")
 
