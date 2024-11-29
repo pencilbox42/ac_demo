@@ -30,7 +30,6 @@ if "selected_model" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
 # Display conversation history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
@@ -45,21 +44,17 @@ if prompt := st.chat_input("What do you want to know about energy?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Generate response based on the selected model
-    with st.chat_message("assistant"):
-        if st.session_state.selected_model == "OpenAI (GPT-4)":
-            # Make API call to OpenAI's GPT model
-            response = openai_chat(st.session_state.messages)
+    # Initialize the response variable
+    response = ""  # Default empty string for response in case no model is selected or an error occurs
 
-        # Display assistant's response in chat
+    # Generate response based on the selected model
+    if st.session_state.selected_model == "OpenAI (GPT-4)":
+        # Make API call to OpenAI's GPT model
+        response = openai_chat(st.session_state.messages)
+
+    # Display assistant's response in chat
+    with st.chat_message("assistant"):
         st.markdown(response)
     
     # Append assistant's response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
-
-
-
-
-
-
-
